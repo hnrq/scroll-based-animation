@@ -13,11 +13,11 @@ const parameters = {
   particleColor: "#ffffff",
 };
 
-gui.addColor(parameters, "materialColor").onChange((value) => {
+gui.addColor(parameters, "materialColor").onChange((value: string) => {
   material.color.set(value);
 });
 
-gui.addColor(parameters, "particleColor").onChange((value) => {
+gui.addColor(parameters, "particleColor").onChange((value: string) => {
   particlesMaterial.color.set(value);
 });
 
@@ -25,7 +25,7 @@ gui.addColor(parameters, "particleColor").onChange((value) => {
  * Base
  */
 // Canvas
-const canvas = document.querySelector("canvas.webgl");
+const canvas: HTMLCanvasElement | null = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
@@ -150,7 +150,10 @@ cameraGroup.add(camera);
 /**
  * Renderer
  */
-const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+const renderer = new THREE.WebGLRenderer({
+  canvas: <HTMLCanvasElement>canvas,
+  alpha: true,
+});
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
@@ -163,7 +166,7 @@ window.addEventListener("scroll", () => {
   scrollY = window.scrollY;
 });
 
-const sections = [...document.getElementsByClassName("section")];
+const sections = Array.from(document.getElementsByClassName("section"));
 
 const observer = new IntersectionObserver(
   ([entry]) => {
