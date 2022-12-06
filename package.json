@@ -1,9 +1,10 @@
 {
   "repository": "scroll-based-animation",
+  "homepage": "https://hnrq.github.io/scroll-based-animation/",
   "license": "MIT",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --base=./",
     "preview": "vite preview"
   },
   "devDependencies": {
